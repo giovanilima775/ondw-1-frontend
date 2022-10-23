@@ -2,8 +2,8 @@ import { Constants } from 'configs';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 interface IAuthContext {
-  isAuthenticated: boolean;
-  setIsAuthenticated(isAuthenticated: boolean): void;
+  accessToken?: string;
+  setAccessToken(accessToken: string): void;
 }
 
 const AuthContext = createContext<IAuthContext>(null!);
@@ -17,19 +17,22 @@ export function AuthProvider({ children }: Props) {
     localStorage.getItem(Constants.AuthStorageKey) || '{}'
   );
 
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
-    storage?.isAuthenticated
-  );
+  const [accessToken, setAccessToken] = useState<string>(storage?.accessToken);
 
   useEffect(() => {
     localStorage.setItem(
       Constants.AuthStorageKey,
-      JSON.stringify({ isAuthenticated })
+      JSON.stringify({ accessToken })
     );
-  }, [isAuthenticated]);
+  }, [accessToken]);
   return (
     <>
-      <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
+      <AuthContext.Provider
+        value={{
+          accessToken,
+          setAccessToken,
+        }}
+      >
         {children}
       </AuthContext.Provider>
     </>

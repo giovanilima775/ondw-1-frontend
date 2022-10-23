@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { ArtCryptoLogo } from 'components';
 import { SignInResolver } from 'validations';
 import { useAuthContext } from 'context';
+import { useAuth } from 'hooks';
 
 interface ISignInForm {
   email: string;
@@ -15,12 +16,16 @@ export function SignIn() {
     register,
     handleSubmit,
   } = useForm<ISignInForm>({ resolver: SignInResolver });
-  const { setIsAuthenticated } = useAuthContext();
+  const { setAccessToken } = useAuthContext();
+  const { signIn } = useAuth();
 
-  const onSubmit = (values: ISignInForm) => {
-    console.log(values);
-    setIsAuthenticated(true);
-  };
+  async function onSubmit({ email, password }: ISignInForm) {
+    const accessToken = await signIn(email, password);
+    if (accessToken) {
+      console.log(accessToken);
+      setAccessToken(accessToken);
+    }
+  }
   return (
     <div className="w-full h-screen bg-primary-linear flex flex-col items-center justify-center">
       <ArtCryptoLogo width={200} height={'auto'} />
