@@ -1,5 +1,10 @@
+import { AppContexts } from 'context';
 import { AppRoutes } from 'routes';
 
 export function App() {
-  return <AppRoutes />;
+  return (
+    <AppContexts>
+      <AppRoutes />
+    </AppContexts>
+  );
 }
