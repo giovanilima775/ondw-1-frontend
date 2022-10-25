@@ -1,3 +1,4 @@
+import { ISignUpRequest } from "interfaces";
 import { AuthService } from "service"
 
 export function useAuth() {
@@ -8,7 +9,13 @@ export function useAuth() {
     }
   }
 
+  async function signUp(signUp: ISignUpRequest) {
+    const { status } = await AuthService.signUp(signUp);    
+      return status === 201;    
+  }
+
   return {
-    signIn
+    signIn,
+    signUp
   }
 }

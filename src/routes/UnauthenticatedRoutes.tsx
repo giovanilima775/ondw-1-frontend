@@ -1,4 +1,4 @@
-import { SignIn } from 'pages';
+import { SignIn, SignUpPage } from 'pages';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 export function UnauthenticatedRoutes() {
@@ -6,6 +6,7 @@ export function UnauthenticatedRoutes() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<SignIn />}></Route>
+        <Route path="/register" element={<SignUpPage />}></Route>
       </Routes>
     </BrowserRouter>
   );
