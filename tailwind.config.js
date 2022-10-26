@@ -12,6 +12,7 @@ module.exports = {
       backgroundImage: {
         "ipad-mini": 'url(/public/img/ipad-mini.png)',
         "nft-example": 'url(/public/img/nft-example.png)',
+        "author-example": 'url(/public/img/nft-example.png)',
       },
       colors: {
         primary: 'hsl(198,64%,62%)',
