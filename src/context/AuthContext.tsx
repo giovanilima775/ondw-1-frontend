@@ -1,7 +1,7 @@
 import { Constants } from 'configs';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-interface IAuthContext {
+export interface IAuthContext {
   accessToken?: string;
   setAccessToken(accessToken: string): void;
 }

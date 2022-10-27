@@ -5,7 +5,7 @@ export function HomePage() {
     <>
       <Nav />
       <Header></Header>
-      <NFTsSection />
+      {/* <NFTsSection /> */}
       <Footer />
     </>
   );
