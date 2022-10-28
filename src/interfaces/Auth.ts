@@ -14,3 +14,9 @@ export interface ISignUpResponse {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface IGetUserDataResponse {
+  id: string;
+  name: string;
+  email: string;
+}

@@ -1,6 +1,5 @@
 import { EthIcon, HeartButton } from 'components';
 import { Constants } from 'configs';
-import { INft } from 'interfaces';
 
 type Props = {
   imgUrl: string;

@@ -1,4 +1,4 @@
-import { Nav, Header, NFTsSection, Footer } from 'components';
+import { Nav, Header, Footer } from 'components';
 
 export function HomePage() {
   return (

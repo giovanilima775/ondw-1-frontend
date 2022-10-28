@@ -1,9 +1,12 @@
 import { Constants } from 'configs';
+import { IGetUserDataResponse } from 'interfaces';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 export interface IAuthContext {
   accessToken?: string;
   setAccessToken(accessToken: string): void;
+  user?: IGetUserDataResponse;
+  setUser(user: IGetUserDataResponse): void;
 }
 
 const AuthContext = createContext<IAuthContext>(null!);
@@ -18,19 +21,22 @@ export function AuthProvider({ children }: Props) {
   );
 
   const [accessToken, setAccessToken] = useState<string>(storage?.accessToken);
+  const [user, setUser] = useState<IGetUserDataResponse>(storage?.user);
 
   useEffect(() => {
     localStorage.setItem(
       Constants.AuthStorageKey,
-      JSON.stringify({ accessToken })
+      JSON.stringify({ accessToken, user })
     );
-  }, [accessToken]);
+  }, [accessToken, user]);
   return (
     <>
       <AuthContext.Provider
         value={{
           accessToken,
           setAccessToken,
+          user,
+          setUser,
         }}
       >
         {children}

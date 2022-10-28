@@ -5,6 +5,7 @@ import { SignInResolver } from 'validations';
 import { useAuthContext } from 'context';
 import { useAuth } from 'hooks';
 import { useNavigate } from 'react-router-dom';
+import { setBearerToken } from 'providers';
 
 interface ISignInForm {
   email: string;
@@ -17,15 +18,20 @@ export function SignIn() {
     register,
     handleSubmit,
   } = useForm<ISignInForm>({ resolver: SignInResolver });
-  const { setAccessToken } = useAuthContext();
-  const { signIn } = useAuth();
+  const { setAccessToken, setUser } = useAuthContext();
+  const { signIn, getUserData } = useAuth();
   const navigate = useNavigate();
 
   async function onSubmit({ email, password }: ISignInForm) {
     const accessToken = await signIn(email, password);
+    console.log(accessToken);
     if (accessToken) {
-      console.log(accessToken);
-      setAccessToken(accessToken);
+      setBearerToken(accessToken);
+      const user = await getUserData();
+      if (user) {
+        setUser(user);
+        setAccessToken(accessToken);
+      }
     }
   }
   return (

@@ -9,9 +9,14 @@ export const Api = axios.create({ baseURL});
 const auth: Pick<IAuthContext, 'accessToken'> =  JSON.parse(localStorage.getItem(Constants.AuthStorageKey) || '{}') || {};
 const  { accessToken } =  auth;
 
-Api.interceptors.request.use((config: any) => {
-  if(accessToken) {
-    config.headers['Authorization'] = `Bearer ${accessToken}`;
-  }
-  return config;
-})
+if(accessToken) {
+  setBearerToken(accessToken);  
+}
+
+export function setBearerToken(token: string) {
+
+  Api.interceptors.request.use((config: any) => {
+    config.headers['Authorization'] = `Bearer ${token}`;
+    return config;
+  })
+}

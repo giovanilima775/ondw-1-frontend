@@ -7,7 +7,11 @@ export function Nav() {
     <>
       <nav className="w-full h-20 shadow-lg bg-white">
         <div className="container px-4 h-full flex items-center justify-between">
-          <IconButton onClick={() => navigate('/')} Icon={<ArtCryptoLogo />} />
+          <IconButton
+            opacityEnabled={false}
+            onClick={() => navigate('/')}
+            Icon={<ArtCryptoLogo />}
+          />
           <div className="hidden lg:block">
             <NavLinks />
           </div>
