@@ -1,4 +1,4 @@
-import { SignIn, SignUpPage } from 'pages';
+import { NotFoundPage, SignIn, SignUpPage } from 'pages';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 export function UnauthenticatedRoutes() {
@@ -7,6 +7,7 @@ export function UnauthenticatedRoutes() {
       <Routes>
         <Route path="/" element={<SignIn />}></Route>
         <Route path="/register" element={<SignUpPage />}></Route>
+        <Route path="*" element={<NotFoundPage />}></Route>
       </Routes>
     </BrowserRouter>
   );
