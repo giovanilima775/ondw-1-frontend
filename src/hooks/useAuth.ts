@@ -4,7 +4,7 @@ import { AuthService } from "service"
 export function useAuth() {
   async function getUserData() {
     const { status, data } = await AuthService.getUserData();
-    if(status === 201) {
+    if(status === 200) {
       return data;
     }
   }
